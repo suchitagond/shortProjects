@@ -1,0 +1,52 @@
+import random
+
+ladder={9:30,15:58,21:42,49:71,55:87,64:99,69:94}
+snake={61:4,29:6,97:32,68:36,82:57,89:50}
+
+pos1=0
+pos2=0
+
+def mov(pos):
+    dice=random.randint(1,6)
+    print("Your Dice Throw : ",dice)
+    pos+=dice
+
+    if (pos > 100):
+        pos = pos - dice
+
+    if(pos in snake):
+        print("So sorry...Bitten by snake from ",pos,"...")
+        pos=snake[pos]
+        print("Now you are on ",pos)
+
+    elif(pos in ladder):
+        print("Congrats...Climbed by ladder from ",pos,"...")
+        pos = ladder[pos]
+        print("Now you are on ", pos)
+
+    else:
+        print("Now you are on ", pos)
+
+    print("\n")
+    return pos
+
+name1=input("enter player 1 name : ")
+name2=input("enter player 2 name : ")
+print("\n")
+x=0
+
+while True:
+    x = x+1
+    a=input(f"{name1} enter \"any key\" to throw dice : ")
+    pos1=mov(pos1)
+    if(pos1==100):
+        print(f"Game over!!!\n{name1} win...")
+        print(f"You win in {x} attempts...")
+        break
+
+    b = input(f"{name2} enter \"any key\" to throw dice : ")
+    pos2 = mov(pos2)
+    if (pos2 == 100):
+        print(f"Game over!!!\n{name2} win...")
+        print(f"You win in {x} attempts...")
+        break
