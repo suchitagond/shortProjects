@@ -1,0 +1,94 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+class doner
+{
+    string name, address, email, blood_group, deases;
+    int age, i = 0;
+    long contact_no;
+    // string arr[100];
+    vector<string> v;
+    vector<string>::iterator it;
+    friend class reciver;
+
+public:
+    void insert_info(int n)
+    {
+        cout << "\nDONER INFORMATION : \n";
+        cout << "Enter your Name : ";
+        cin >> name;
+        cout << "Enter your Age : ";
+        cin >> age;
+        cout << "Enter your Address : ";
+        cin >> address;
+        cout << "Enter your Email : ";
+        cin >> email;
+        cout << "Enter your Blood Group : ";
+        cin >> blood_group;
+        cout << "Enter your Contact Number : ";
+        cin >> contact_no;
+        cout << "If you have any dease then write it else wtite NONE : ";
+        cin >> deases;
+        if (deases == "none" || "NONE")
+        {
+            cout << "you can donate your blood " << endl;
+            v[i] = blood_group;
+            i++;
+        }
+        else
+        {
+            cout << "Sorry,you are not able to donate blood " << endl;
+        }
+    }
+};
+class reciver : public doner
+{
+public:
+    void reciver_info(int n)
+    {
+        cout << "\nRECIVER INFORMATION : \n";
+        cout << "Enter your Name : ";
+        cin >> name;
+        cout << "Enter your Age : ";
+        cin >> age;
+        cout << "Enter your Address : ";
+        cin >> address;
+        cout << "Enter your Email : ";
+        cin >> email;
+        cout << "Enter your Contact Number : ";
+        cin >> contact_no;
+        cout << "Which Blood Group you want : ";
+        cin >> blood_group;
+        it = v.begin();
+        for (int i = 0; i < v.size(); i++)
+        {
+            if (v[i] == blood_group)
+            {
+                cout << "Your blood group is found in our bank ";
+                v.erase(it);
+            }
+            it++;
+        }
+    }
+};
+
+int main()
+{
+    doner obj;
+    int n, m;
+    cout << "no. of doner you have : ";
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        obj.insert_info(n);
+    }
+    reciver obj2;
+    cout << "no. of reciver you have : ";
+    cin >> m;
+    for (int i = 0; i < m; i++)
+    {
+        obj2.reciver_info(n);
+    }
+    return 0;
+}
